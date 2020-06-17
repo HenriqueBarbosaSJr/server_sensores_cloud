@@ -20,8 +20,22 @@ module.exports = {
             next(error)
         }
     },
-    
 
 
+    async create(req, res, next){
+        
+        try{
+            const { sensor1 } = req.body;
+            const { sensor2 } = req.body;
+            const { sensor3 } = req.body;
+            await knex ('sensores')
+            .insert({ sensor1 , sensor2,  sensor3 });
+            
+            return res.status(201).send();
+        } catch (error){
+            next(error);
+
+        }   
+    },
 
 }
